@@ -296,6 +296,16 @@ public class AxiomBuilder {
                             return df.getOWLDataMinCardinality(card, prop, dr);
                         }
                     }
+		    if(type.equals(DATA_MAX_CARDINALITY)) {
+		    	int card = (Integer) node.getChild(0).getLabel();
+                        OWLDataPropertyExpression prop = (OWLDataPropertyExpression) asOWLObject(node.getChild(1));
+                        if (node.getChildCount() == 2) {
+                            return df.getOWLDataMaxCardinality(card, prop);
+			} else {
+                            OWLDataRange dr = (OWLDataRange) asOWLObject(node.getChild(2));
+                            return df.getOWLDataMaxCardinality(card, prop, dr);
+                        }
+		    }
                     if (type.equals(DATA_EXACT_CARDINALITY)) {
                         int card = (Integer) node.getChild(0).getLabel();
                         OWLDataPropertyExpression prop = (OWLDataPropertyExpression) asOWLObject(node.getChild(1));
